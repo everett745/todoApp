@@ -1,0 +1,40 @@
+<header>
+  <div class="head">
+    <ul>
+      <li>
+        <button mat-button type="button" (click)="drawer.toggle()">
+          Menu
+        </button>
+      </li>
+      <li>
+        <button mat-button type="button">
+          Registration
+        </button>
+      </li>
+      <li>
+        <button mat-button type="button">
+          Sign In
+        </button>
+      </li>
+    </ul>
+  </div>
+</header>
+
+
+<footer>
+  <div class="footer">
+    Directed by lasy programmer!!!
+  </div>
+</footer>
+
+
+<mat-drawer-container class="container" autosize>
+  <mat-drawer #drawer class="sidenav" mode="side">
+    <p>Menu</p>
+    <ul>
+      <li> <button type="button" mat-button> Registration </button> </li>
+      <li> <button type="button" mat-button> Sign in </button> </li>
+    </ul>
+  </mat-drawer>
+
+</mat-drawer-container>

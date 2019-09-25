@@ -1,0 +1,67 @@
+mat-list{
+
+  padding: 0 20px 0 20px;
+
+  button{
+    position: absolute;
+    right: 20px;
+    color: #fff;
+  }
+  .complete{
+    text-decoration: line-through;
+  }
+  mat-list-item span{
+    font: 15px "Fira Code";
+    color: #fff;
+    margin-left: 20px;
+  }
+
+  #footer{
+    font: 15px "Fira Code";
+    color: #fff;
+
+    padding: 0;
+    #count{
+      margin-top: .7rem;
+      margin-left: 5px;
+    }
+    mat-button-toggle-group{
+      margin-left: 50px;
+      font-size: 15px;
+      background-color: rgba(255, 255, 255, 0.18);
+
+      mat-button-toggle{
+        color: #fff;
+      }
+    }
+
+    #clear{
+      float: right;
+      margin-top: .5rem;
+    }
+    #clear:hover{
+      cursor: pointer;
+      text-decoration: underline;
+    }
+  }
+}
+
+
+
+    /*FORM STYLES (INPUT/FILTER)*/
+
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+
+  .example-full-width {
+    width: 100%;
+
+
+  }
+}
+
+
+
+
