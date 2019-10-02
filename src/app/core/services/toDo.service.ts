@@ -1,11 +1,5 @@
 import { Injectable } from '@angular/core';
-
-export interface toDo {
-  id: number;
-  title: string;
-  completed: boolean;
-  changing: boolean;
-}
+import {toDo} from '../models';
 
 @Injectable({ providedIn: 'root' })
 export class ToDoService {

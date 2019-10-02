@@ -7,34 +7,25 @@
         </button>
       </li>
       <li>
-        <button mat-button type="button">
-          Registration
+        <button mat-button type="button" [routerLink]="['/']">
+          HOME
         </button>
       </li>
       <li>
-        <button mat-button type="button">
-          Sign In
+        <button mat-button type="button" [routerLink]="['/todo']">
+          TODO
         </button>
       </li>
     </ul>
   </div>
 </header>
 
-
-<footer>
-  <div class="footer">
-    Directed by lasy programmer!!!
-  </div>
-</footer>
-
-
 <mat-drawer-container class="container" autosize>
   <mat-drawer #drawer class="sidenav" mode="side">
     <p>Menu</p>
     <ul>
-      <li> <button type="button" mat-button> Registration </button> </li>
-      <li> <button type="button" mat-button> Sign in </button> </li>
+      <li> <a [routerLink]="['/register']"> <button type="button" mat-button> Registration </button>  </a> </li>
+      <li> <a [routerLink]="['/login']"> <button type="button" mat-button> Sign in </button> </a> </li>
     </ul>
   </mat-drawer>
-
 </mat-drawer-container>
