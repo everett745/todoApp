@@ -56,16 +56,18 @@ footer{
   background-color: rgba(63, 65, 255, 0.52);
   position: absolute;
   top: 70px;
-  width: min-content;
-  height: 400px;
+  min-width: min-content;
+  height: 420px;
   border: 1px solid rgba(0, 0, 0, 0.5);
 
   .sidenav {
     background-color: rgb(201, 171, 255);
     padding: 20px;
+    width: 200px;
+
     p{
       display: block;
-      font-size: 20px;
+      font-size: 30px;
       font-weight: bold;
       text-align: center;
     }

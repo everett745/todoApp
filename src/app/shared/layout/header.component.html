@@ -27,5 +27,11 @@
       <li> <a [routerLink]="['/register']"> <button type="button" mat-button> Registration </button>  </a> </li>
       <li> <a [routerLink]="['/login']"> <button type="button" mat-button> Sign in </button> </a> </li>
     </ul>
+
+    <ul>
+      <li> Вы вошли как: {{authService.mainUser.username}} </li>
+      <li> <a> <button type="button" mat-button> Личный кабинет </button> </a> </li>
+      <li> <a [routerLink]="['/']" (click)="authService.logout()"> <button type="button" mat-button> Sign in </button> </a> </li>
+    </ul>
   </mat-drawer>
 </mat-drawer-container>
