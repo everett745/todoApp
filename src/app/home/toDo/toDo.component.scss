@@ -1,16 +1,24 @@
-mat-list{
-
+ul{
   padding: 0 20px 0 20px;
+  position: relative;
 
   button{
     position: absolute;
+    bottom: 5px;
     right: 20px;
+    float: right;
     color: #fff;
   }
   .complete{
     text-decoration: line-through;
   }
-  mat-list-item span{
+  li{
+    position: relative;
+    padding: 1rem;
+    list-style: none;
+    margin: 10px;
+  }
+  li span{
     font: 15px "Fira Code";
     color: #fff;
     margin-left: 20px;
@@ -19,8 +27,8 @@ mat-list{
   #footer{
     font: 15px "Fira Code";
     color: #fff;
-
     padding: 0;
+
     #count{
       margin-top: .7rem;
       margin-left: 5px;
@@ -58,10 +66,16 @@ mat-list{
   .example-full-width {
     width: 100%;
 
-
+    ::ng-deep .mat-form-field-label {
+      /*change color of underline*/
+      color: white;
+    }
+    ::ng-deep .mat-form-field-underline {
+      /*change color of underline*/
+      background-color: white;
+    }
   }
 }
-
 
 .mainTodo {
   padding: 40px 50px 20px;
@@ -75,5 +89,9 @@ mat-list{
 
   h1 {
     margin-bottom: 1rem;
+  }
+
+  ::ng-deep .mat-checkbox .mat-checkbox-frame {
+    border-color: #eee7e6;
   }
 }

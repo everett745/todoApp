@@ -1,0 +1,82 @@
+<div class="mainTodo">
+
+  <h1>Main todo</h1>
+
+  <!--FORM (INPUT/FILTER)-->
+  <div class="inputBox">
+    <form class="example-form">
+      <mat-form-field class="example-full-width" *ngIf="!changeWin; else change">
+        <label>
+          <input
+            matInput
+            id="mainInput"
+            type="text"
+            placeholder="What needs to be done?"
+            [(ngModel)]="title"
+            [ngModelOptions]="{standalone: true}"
+            (keydown.enter)="add()"
+          >
+        </label>
+      </mat-form-field>
+    </form>
+  </div>
+  <!--MAIN LIST-->
+  <div class="todoList">
+    <ul role="list" *ngIf="todos.length; else empty">
+      <li role="listitem" *ngFor="let todo of todos">
+
+        <mat-checkbox (click)="changing(todo.id)" [(ngModel)]="todo.completed"></mat-checkbox>
+
+        <span [class.complete] = "todo.completed" (dblclick)="changeToDO(todo)">
+           {{todo.text}}
+        </span>
+
+        <button mat-icon-button id="button" (click)="remove(todo.id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </li>
+
+      <ul id="footer">
+      <span id="count">
+        {{todos.length}} items left
+      </span>
+
+        <mat-button-toggle-group name="fontStyle" aria-label="Filter" appearance="legacy" (change)="filter($event)">
+          <mat-button-toggle checked value="All">All</mat-button-toggle>
+          <mat-button-toggle value="Active">Active</mat-button-toggle>
+          <mat-button-toggle value="Completed">Completed</mat-button-toggle>
+        </mat-button-toggle-group>
+
+        <span id="clear" (click)="removeCompleted()">
+        Clear completed
+      </span>
+      </ul>
+    </ul>
+  </div>
+
+</div>
+
+
+
+
+
+<!--    TEMPLATES   -->
+
+<ng-template #empty>
+  <h4> List is empty!!! Enter smt... </h4>
+</ng-template>
+
+<ng-template #change>
+  <mat-form-field class="example-full-width" style="margin-left: 20px">
+   <label>
+      <input
+        class="ng-touched"
+       matInput
+       type="text"
+       placeholder="CHANGE TEXT"
+       [(ngModel)]="changeTodo.text"
+       (keydown.enter)="changeToDO()"
+     >
+    </label>
+  </mat-form-field>
+</ng-template>

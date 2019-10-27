@@ -2,17 +2,12 @@
   <div class="head">
     <ul>
       <li>
-        <button mat-button type="button" (click)="drawer.toggle()">
-          Menu
-        </button>
-      </li>
-      <li>
-        <button mat-button type="button" [routerLink]="['/']">
+        <button mat-button type="button" [routerLink]="['/home', authService.User]">
           HOME
         </button>
       </li>
       <li>
-        <button mat-button type="button" [routerLink]="['/todo']">
+        <button mat-button type="button" [routerLink]="['/home', authService.User, 'todo']">
           TODO
         </button>
       </li>
@@ -20,18 +15,21 @@
   </div>
 </header>
 
-<mat-drawer-container class="container" autosize>
-  <mat-drawer #drawer class="sidenav" mode="side">
+<mat-sidenav-container class="container" autosize>
+  <mat-sidenav #drawer class="sidenav" [(opened)]="openSideNav" mode="side">
     <p>Menu</p>
-    <ul>
+    <ul *ngIf="!authService.isAuthenticated(); else sigin">
       <li> <a [routerLink]="['/register']"> <button type="button" mat-button> Registration </button>  </a> </li>
       <li> <a [routerLink]="['/login']"> <button type="button" mat-button> Sign in </button> </a> </li>
     </ul>
+  </mat-sidenav>
+</mat-sidenav-container>
 
-    <ul>
-      <li> Вы вошли как: {{authService.mainUser.username}} </li>
-      <li> <a> <button type="button" mat-button> Личный кабинет </button> </a> </li>
-      <li> <a [routerLink]="['/']" (click)="authService.logout()"> <button type="button" mat-button> Sign in </button> </a> </li>
-    </ul>
-  </mat-drawer>
-</mat-drawer-container>
+<ng-template #sigin>
+  <ul>
+    <li> Вы вошли как:  {{authService.User}}</li>
+    <li> <a [routerLink]="['/home', '123', 'page']"> <button type="button" mat-button> Личный кабинет </button> </a> </li>
+    <li> <a [routerLink]="['']" (click)="authService.logout()"> <button type="button" mat-button> Sign out </button> </a> </li>
+    <li style="margin-top: 25px; font-size: 13px"> <small>Время авторизации:  {{authService.Time | date:'dd:MM -- HH:mm:ss'}}</small> </li>
+  </ul>
+</ng-template>

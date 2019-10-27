@@ -1,6 +1,8 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
-import {AuthService} from './auth.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {AuthService} from '../core/services';
+import {ToastrService} from 'ngx-toastr';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {User} from '../core/models';
 
 
@@ -16,58 +18,51 @@ export class AuthComponent implements OnInit{
   @Output() userObj = new EventEmitter<User>();
 
   authType: string;
-  login: boolean;
-  register: boolean;
-  public MainUser: User;
+  loaded = false;
 
-  username: string;
-  email: string;
-  password: string;
+  singUpForm: FormGroup;
 
   constructor(private route: ActivatedRoute,
-              private authService: AuthService) { }
+              private router: Router,
+              public authService: AuthService,
+              private toastr: ToastrService) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.route.url.subscribe(data => {
-      this.authType = data[data.length - 1].path;
+      this.authType = this.route.snapshot.url[0].path.toUpperCase();
     });
-    if (this.authType === 'register') {
-      this.register = true;
-      this.login = false;
-    } else if (this.authType === 'login') {
-      this.register = false;
-      this.login = true;
-    }
+
+    this.singUpForm = new FormGroup({
+      email: new FormControl('kir@polik.comr', [
+        Validators.email,
+        Validators.required
+      ]),
+      password: new FormControl('AsdDsa123', [
+        Validators.required
+      ])
+    });
   }
 
   submitForm() {
-    if (this.authType === 'register') {
-      this.authService.registrate({
-          username: this.username,
-          email: this.email,
-          password: this.password
-      })
-        .subscribe( user => {
-          console.log('regist: ', user);
-          this.MainUser = user.user;
-          this.authService.mainUser = user.user;
-        });
-
-      this.userObj.emit(this.MainUser);
-
-    } else if (this.authType === 'login') {
-      this.authService.login({
-        username: this.username,
-        email: this.email,
-        password: this.password
-      })
-        .subscribe( user => {
-          console.log('login: ', user);
-          this.MainUser = user.user;
-          this.authService.mainUser = user.user;
-        });
-
-      this.userObj.emit(this.MainUser);
+    if (this.singUpForm.invalid) {
+      return;
     }
+
+    this.loaded = true;
+
+    let data = {
+      username: String(this.singUpForm.get('email')).substr(0, 5),
+      email: String(this.singUpForm.get('email').value),
+      password: String(this.singUpForm.get('password').value)
+    };
+
+    this.authService.login(data, this.route.snapshot.url[0].path).subscribe( user => {
+        this.singUpForm.reset();
+        this.router.navigate(['home']);
+        this.toastr.success("Успешная авторизация");
+        this.loaded = false;
+      }, () => {
+        this.loaded = false;
+      });
   }
 }

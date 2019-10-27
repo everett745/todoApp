@@ -1,22 +1,24 @@
 .wrapper{
-  width: 350px;
-  margin: 0 auto;
-  padding: 0 10px;
-  background: grey;
+  width: 250px;
+  border: 2px solid #5869ed;
+  background: #575757;
+  border-radius: 10px;
+  margin: 150px auto;
+  padding: 0;
   box-sizing: border-box;
+  position: relative;
   /*border: 1px solid red;*/
 
   .mainContent{
     /*border: 1px solid red;*/
     margin: 0 auto;
-    padding: 0 10px;
+    padding: 2px;
     text-align: center;
     box-sizing: border-box;
 
     label{
-      /*border: 1px solid red;*/
       display: block;
-      font-size: 20px;
+      font-size: 15px;
       font-weight: bold;
       padding: 5px;
       margin-bottom: 0;
@@ -29,19 +31,28 @@
       padding: 0.4rem;
       font-size: 1.2rem;
       border: 1px solid #ccc;
-      margin-bottom: 1rem;
     }
 
-    button{
+    #close{
+      float: right;
+    }
+
+    #okay{
       margin-bottom: 15px;
       width: 70%;
-      height: 50px;
-      font-size: 25px;
+      height: 25px;
+      font-size: 15px;
       box-sizing: border-box;
       font-weight: 400;
       border: 1px solid #343434;
     }
   }
+}
+
+#progresBar{
+  position: absolute;
+  left: 70px;
+  top: 70px;
 }
 
 .hidden{

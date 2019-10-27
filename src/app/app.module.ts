@@ -4,50 +4,35 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import {ToDoComponent } from './toDo/toDo.component';
 
-import {FormsModule} from '@angular/forms';
-import {MatCheckboxModule} from '@angular/material/checkbox';
-import {MatIconModule} from '@angular/material/icon';
-import {MatButtonModule} from '@angular/material/button';
-import {MatSlideToggleModule} from '@angular/material/slide-toggle';
-import {MatFormFieldModule} from '@angular/material';
-import {MatButtonToggleModule} from '@angular/material/button-toggle';
-import {MatSidenavModule} from '@angular/material/sidenav';
-import {MatInputModule} from '@angular/material/input';
-import {AppRoutingModule} from './app-routing.module';
-import { HomeComponent } from './home/home.component';
-import { AuthComponent } from './auth/auth.component';
-import {FooterComponent, HeaderComponent} from './shared/layout';
-import {HttpClientModule} from '@angular/common/http';
+import { AppRoutingModule } from './app-routing.module';
+import {HeaderModule} from './shared/layout';
+import {SharedModule} from './shared';
+import {AuthModule} from './auth/auth.module';
+import {HomeModule} from './home/home.module';
+import {ClearPageComponent} from './home/clear-page/clear-page.component';
+import {ToastrModule} from 'ngx-toastr';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    ToDoComponent,
-    FooterComponent,
-    HeaderComponent,
-    HomeComponent,
-    AuthComponent
+    ClearPageComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    FormsModule,
     AppRoutingModule,
-    HttpClientModule,
+    SharedModule,
+    AuthModule,
+    HeaderModule,
+    HomeModule,
 
-
-    MatCheckboxModule,
-    MatIconModule,
-    MatButtonModule,
-    MatSlideToggleModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonToggleModule,
-    MatSidenavModule
+    ToastrModule.forRoot({
+      timeOut: 10000,
+      positionClass: 'toast-bottom-right',
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,6 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {AuthComponent} from '../../auth/auth.component';
-import {AuthService} from '../../auth/auth.service';
+import {AuthService} from '../../core/services';
 
 @Component({
   selector: 'app-header',
@@ -9,7 +8,9 @@ import {AuthService} from '../../auth/auth.service';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private authService: AuthService) { }
+  @Input() openSideNav: boolean;
+
+  constructor(public authService: AuthService) { }
 
   ngOnInit() {
   }
